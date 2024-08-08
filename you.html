@@ -26,41 +26,94 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             box-sizing: border-box;
         }
-        .controls button {
+        button {
             padding: 10px 15px;
             font-size: 16px;
             margin: 5px;
             border: none;
             border-radius: 5px;
-            background-color: #4caf50;
+            background-color: #0075ff;
             color: white;
             cursor: pointer;
             transition: background-color 0.3s ease;
         }
-        .controls button:hover {
-            background-color: #45a049;
+        button:hover {
+            background-color: #0077ffc4;
+        }
+        .default{
+            width: 75px; /* Consistent button width */
+            height: 75px; /* Consistent button height */
+            font-size: 35px; /* Larger icon size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ddd;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+                /* Style for disabled buttons */
+        .switchable{
+            background-color: #d3d3d3; /* Light gray background */
+            color: #a9a9a9; /* Darker gray text color */
+            /*cursor: not-allowed; Change cursor to indicate disabled state */
         }
         .progress-container {
-            margin: 10px 0;
+             
+            display: flex;
+            align-items: center; /* Align items vertically center */
+            width: 100%;
+            
+
+            /*float:unset;*/
+
         }
         .progress-bar {
+            flex: 1; /* Take up remaining space */
+            height: 5px;
+            background: #ddd;
+            border-radius: 5px;
+            margin-left: 10px; /* Space between time and progress bar */
+            position: relative;
+            /*
             width: 100%;
             height: 5px;
             background: #ddd;
             border-radius: 5px;
-            position: relative;
+            */
+           /* position: relative;*/
         }
+    /*
         .progress-bar span {
             display: block;
             height: 100%;
-            background: #4caf50;
+            background: #0075ff;
             width: 0;
         }
+        */
         .volume-container {
             margin-top: 10px;
+            display:flex;
+            float:left;
+          
+        
         }
-        .volume-container label {
-            font-size: 14px;
+   
+        .audio_controll
+        {
+            display: flex;
+            flex-direction: column; /* Stack items vertically */
+            align-items: flex-start; /* Align items to the start (left) */
+            width: 300px; /* Set a width for your container if needed */
+            margin: 0 auto; /* Center the container horizontally */
+        }
+        .v_container{
+            display: flex;
+            align-items: center; /* Align items vertically center */
+            margin-bottom: 10px; /* Space below the audio controls */
         }
         .search-bar {
             width: 100%;
@@ -75,7 +128,8 @@
             padding: 0;
             margin: 0;
         }
-        .Song {
+        .Song 
+        {
             padding: 10px;
             font-size: 16px;
             border-bottom: 1px solid #ddd;
@@ -94,13 +148,19 @@
             align-items: center;
             justify-content: center;
         }
-        .checkbox-container input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            margin-right: 10px;
+
+  
+        #ProgressBarNumber{
+            text-align:left;
         }
-        .checkbox-container label {
-            font-size: 16px;
+        #ProgressBar {
+            display: block;
+            height: 100%;
+            background: #0075ff;
+            width: 0; /* Adjust dynamically with JavaScript */
+        }
+        #PlayingSong{
+            text-align:left;
         }
         @media (max-width: 600px) {
             .controls button {
@@ -110,231 +170,179 @@
             .progress-bar {
                 height: 4px;
             }
-            .volume-container label {
-                font-size: 12px;
-            }
+     
             .Song {
                 font-size: 14px;
                 padding: 8px;
             }
         }
+        .repeat-symbol {
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+  }
+    .action_type{
+        width: 75px; /* Consistent button width */
+        height: 75px; /* Consistent button height */
+        font-size: 35px; /* Larger icon size */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 5px;
+        border: none;
+        border-radius: 5px;
+        background-color: #0075ff;
+        color: white;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    #PauseBtn
+    {
+        display: none;
+
+    }
+    .container {
+            display: grid;
+            place-items: center; /* Center both horizontally and vertically */
+            height: 220 px; /* Full viewport height */
+            /*border: 1px solid #000;*/
+        }
     </style>
-</head>
+</head> 
 <body>
     <div class="media-player">
-        <audio id="audioPlayer" src="path/to/your/audiofile.mp3"></audio>
+        <div class ="container">
+                                    <svg id="PauseBtn" version="1.0" xmlns="http://www.w3.org/2000/svg"
+                        width="200px" height="200px" viewBox="0 0 1119.000000 1280.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                        <metadata>
+                        Created by potrace 1.15, written by Peter Selinger 2001-2017
+                        </metadata>
+                        <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+                        fill="#2196f3" stroke="none">
+                        <path d="M5232 12787 c-39 -18 -167 -186 -349 -457 -247 -368 -442 -606 -773
+                        -944 -690 -704 -1483 -1253 -2435 -1686 -88 -40 -203 -97 -255 -127 -690 -392
+                        -1142 -1162 -1329 -2266 -132 -773 -116 -1772 40 -2539 33 -165 80 -331 109
+                        -388 25 -50 67 -82 94 -74 77 23 117 126 231 584 223 896 455 1399 805 1751
+                        190 191 365 296 667 400 201 69 352 105 878 209 471 93 734 171 970 285 142
+                        69 285 162 357 232 56 55 86 63 74 19 -6 -19 -93 -721 -281 -2261 -41 -335
+                        -124 -1017 -185 -1515 -61 -498 -128 -1049 -150 -1225 -21 -176 -53 -435 -70
+                        -575 -41 -327 -42 -455 -5 -606 53 -221 174 -423 375 -625 180 -181 357 -314
+                        605 -454 488 -277 1060 -438 1800 -507 180 -16 732 -16 885 0 438 48 763 124
+                        1090 254 527 210 891 495 1061 830 84 167 120 320 120 513 0 329 -128 605
+                        -415 890 -450 447 -1161 768 -1981 894 -576 89 -1174 89 -1675 0 -415 -73
+                        -827 -227 -1128 -421 -34 -22 -64 -39 -67 -37 -2 3 63 551 146 1219 82 668
+                        264 2153 404 3300 140 1147 309 2524 375 3060 190 1548 220 1815 220 1949 0
+                        244 -87 377 -208 318z"/>
+                        <path d="M9949 11573 c-20 -27 -51 -70 -69 -98 -94 -141 -279 -331 -440 -452
+                        -126 -94 -235 -159 -406 -244 -162 -79 -236 -140 -308 -248 -79 -119 -137
+                        -283 -167 -476 -30 -186 -11 -568 36 -722 31 -105 52 -83 105 112 71 255 125
+                        372 218 468 82 85 162 119 376 163 224 45 322 79 403 140 17 13 33 24 35 24 2
+                        0 -20 -192 -49 -427 -167 -1367 -157 -1258 -118 -1341 33 -72 74 -120 153
+                        -179 123 -94 275 -157 453 -190 127 -23 413 -23 516 0 236 54 410 161 473 292
+                        34 72 35 190 1 260 -64 130 -236 255 -437 318 -155 49 -244 61 -444 61 -167
+                        -1 -194 -3 -285 -27 -55 -15 -135 -45 -179 -67 -44 -22 -81 -38 -82 -37 -2 2
+                        53 457 121 1012 210 1717 199 1621 186 1666 -17 56 -46 53 -92 -8z"/>
+                        <path d="M7563 8208 c-11 -13 -40 -52 -63 -88 -63 -94 -238 -265 -350 -339
+                        -52 -35 -143 -88 -204 -118 -179 -90 -257 -182 -311 -368 -53 -184 -52 -462 1
+                        -647 11 -36 33 -18 49 40 80 289 140 390 260 442 23 10 103 32 180 49 137 31
+                        232 66 268 99 18 16 18 15 13 -8 -3 -14 -35 -271 -71 -571 -74 -606 -73 -589
+                        -10 -671 60 -80 171 -142 330 -186 88 -25 368 -24 448 1 136 42 230 105 269
+                        181 29 55 29 137 1 191 -118 225 -608 330 -899 191 l-73 -35 5 27 c4 22 161
+                        1311 205 1680 9 77 9 108 1 127 -14 31 -23 31 -49 3z"/>
+                        </g>
+                        </svg>
+
+                        <svg id="PlayBtn"version="1.0" xmlns="http://www.w3.org/2000/svg"
+                                    class="album-cover" width="200px" height="200px" viewBox="0 0 1280.000000 1280.000000"
+                        preserveAspectRatio="xMidYMid meet">
+                        <metadata>
+                        Created by potrace 1.15, written by Peter Selinger 2001-2017
+                        </metadata>
+                        <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)"
+                        fill="#2196f3" stroke="none">
+                        <path d="M6120 12794 c-710 -48 -1205 -142 -1790 -342 -674 -231 -1331 -585
+                        -1885 -1017 -302 -236 -722 -639 -952 -915 -851 -1021 -1339 -2202 -1469
+                        -3555 -22 -224 -25 -826 -6 -1045 50 -570 150 -1054 320 -1560 398 -1179 1112
+                        -2203 2067 -2965 920 -733 2023 -1197 3200 -1344 311 -39 425 -45 800 -45 372
+                        0 552 11 840 50 1210 163 2339 663 3295 1459 195 162 608 574 767 765 851
+                        1022 1339 2202 1469 3555 22 224 25 826 6 1045 -39 446 -108 834 -217 1225
+                        -250 898 -677 1711 -1284 2440 -158 190 -572 604 -761 762 -1019 849 -2214
+                        1343 -3550 1469 -154 14 -724 26 -850 18z m717 -1279 c787 -72 1483 -295 2158
+                        -688 857 -500 1570 -1266 2005 -2152 275 -559 429 -1085 506 -1728 25 -202 30
+                        -755 10 -973 -62 -673 -223 -1253 -511 -1839 -497 -1010 -1329 -1843 -2330
+                        -2335 -559 -275 -1085 -429 -1728 -506 -202 -25 -755 -30 -973 -10 -799 73
+                        -1491 294 -2169 689 -1158 676 -2032 1823 -2366 3102 -117 452 -163 812 -162
+                        1290 0 532 67 993 214 1482 316 1049 947 1969 1803 2632 359 278 757 508 1166
+                        674 457 186 967 312 1440 356 63 6 131 13 150 14 111 11 642 5 787 -8z"/>
+                        <path d="M4980 8648 c-60 -31 -99 -92 -141 -220 l-34 -103 2 -640 c1 -352 7
+                        -1234 13 -1960 11 -1226 13 -1326 30 -1400 67 -289 179 -342 506 -237 12 4
+                        774 441 1694 972 1567 904 1677 969 1740 1032 92 91 134 174 128 255 -6 81
+                        -41 146 -123 228 -67 67 -141 111 -1760 1051 -1186 689 -1709 988 -1755 1002
+                        -151 48 -234 53 -300 20z"/>
+                        </g>
+                        </svg>
+
+        </div>     
+        <audio id="audioPlayer" src="">
+
+        </audio>
         <div class="checkbox-container">
-        <label id="PlayingSong"></label>
+        <p id="PlayingSong"></p>
         </div>
-        <div class="controls">
+        <!--div class="controls">
             <button id="PlayBtn">Play</button>
             <button id="PauseBtn">Pause</button>
             <button id="StopBtn">Stop</button>
-            <button id="MuteBtn">Mute</button>
+            <button id="">Mute</button>
+        </div-->
+        <div class="controls">
+            <button class="action_type" style="float:left;"id="PlayBack">&#8592;</button>
+            <!--button style="height:100px;display: flex;float:left;" id="PlayBack">&#8592;</button>
+            <button class="switchable"id="RepeatAll">&#10230;</button>
+            <button class="switchable"id="Aleatory">&#x1F500;</button>
+            <button style="height:100px;display: flex;float:right;" id="PlayFoward">&#8594;</button-->
+            <button class="action_type"style="float:right;" id="PlayFoward">&#8594;</button>
         </div>
-        <div class="checkbox-container">
+        <div class="controls">
+            <!--button id="PlayBack">&#8592;</button>
+            <button style="text-align: center; width:100px;height: 100px; display: flex;float:inline-start;" class="switchable"id="RepeatAll">&#10230;</button>
+            <button style="text-align: center; width:100px;height: 100px; display: flex;float:inline-end;"class="switchable"id="Aleatory">&#x1F500;</button>
+            <button id="PlayFoward">&#8594;</button-->
+
+            <button class="default" style="float:inline-start" id="RepeatAll">&#10230;</button>
+            <button class="default" style="float:inline-end" id="Aleatory">&#x1F500;</button>
+        </div>
+        <!--div class="checkbox-container">
                 <select id="Repeat">
-                    <option value="all"selected>all</option>
-                    <option value="single">one</option>
+                    <option value="all"selected>&#8594;</option>
+                    <option value="single">&#x21BA;</option>
                 </select>
                 <input type="checkbox" id="AleatoryControl">
-                <label for="AleatoryControl">Aleatory</label>
+                <label for="AleatoryControl">&#x1F500;</label>
+        </div-->
+        <div class="audio_controll">
+            <div class="volume-container">
+                <button id="MuteBtn" style="background-color: #f0f0f0;">
+                    &#128266;
+                </button> 
+                <input type="range" id="VolumeControl" min="0" max="1" step="0.1" value="1">
             </div>
-        <div class="progress-container">
-            <div class="progress-bar">
-                <span id="ProgressBar"></span>
+
+            <div class="progress-container">
+                <p id="ProgressBarNumber">00:00</p>
+                <div class="progress-bar">
+                    <span id="ProgressBar"></span>
+                </div>
             </div>
         </div>
-        <div class="volume-container">
-            <label for="VolumeControl">Volume:</label>
-            <input type="range" id="VolumeControl" min="0" max="1" step="0.01" value="1">
-        </div>
+    
+        <br/>
         <input type="text" id="SearchInput" class="search-bar" placeholder="Search songs...">
         <ul id="SongsList">
-                <!-- A -->
-                <li class="Song" data-src="song.mp3">Adele</li>
-                <li class="Song" data-src="path/to/arcade_fire.mp3">Arcade Fire</li>
-                <li class="Song" data-src="path/to/arctic_monkeys.mp3">Arctic Monkeys</li>
-                <li class="Song" data-src="path/to/amy_winehouse.mp3">Amy Winehouse</li>
-                <li class="Song" data-src="path/to/alex_clare.mp3">Alex Clare</li>
-            
-                <!-- B -->
-                <li class="Song" data-src="path/to/beatles.mp3">The Beatles</li>
-                <li class="Song" data-src="path/to/billie_eilish.mp3">Billie Eilish</li>
-                <li class="Song" data-src="path/to/bob_dylan.mp3">Bob Dylan</li>
-                <li class="Song" data-src="path/to/beyonce.mp3">Beyoncé</li>
-                <li class="Song" data-src="path/to/blur.mp3">Blur</li>
-            
-                <!-- C -->
-                <li class="Song" data-src="path/to/coldplay.mp3">Coldplay</li>
-                <li class="Song" data-src="path/to/camila_cabello.mp3">Camila Cabello</li>
-                <li class="Song" data-src="path/to/cage_the_elephant.mp3">Cage The Elephant</li>
-                <li class="Song" data-src="path/to/chvrches.mp3">CHVRCHES</li>
-                <li class="Song" data-src="path/to/chris_martin.mp3">Chris Martin</li>
-            
-                <!-- D -->
-                <li class="Song" data-src="path/to/david_bowie.mp3">David Bowie</li>
-                <li class="Song" data-src="path/to/dua_lipa.mp3">Dua Lipa</li>
-                <li class="Song" data-src="path/to/daft_punk.mp3">Daft Punk</li>
-                <li class="Song" data-src="path/to/dan_smith.mp3">Dan Smith</li>
-                <li class="Song" data-src="path/to/drake.mp3">Drake</li>
-            
-                <!-- E -->
-                <li class="Song" data-src="path/to/ed_sheeran.mp3">Ed Sheeran</li>
-                <li class="Song" data-src="path/to/eagles.mp3">Eagles</li>
-                <li class="Song" data-src="path/to/eminem.mp3">Eminem</li>
-                <li class="Song" data-src="path/to/ellie_goulding.mp3">Ellie Goulding</li>
-                <li class="Song" data-src="path/to/elton_john.mp3">Elton John</li>
-            
-                <!-- F -->
-                <li class="Song" data-src="path/to/foster_the_people.mp3">Foster The People</li>
-                <li class="Song" data-src="path/to/florence_the_machine.mp3">Florence + The Machine</li>
-                <li class="Song" data-src="path/to/fall_out_boy.mp3">Fall Out Boy</li>
-                <li class="Song" data-src="path/to/foals.mp3">Foals</li>
-                <li class="Song" data-src="path/to/fiona_apple.mp3">Fiona Apple</li>
-            
-                <!-- G -->
-                <li class="Song" data-src="path/to/green_day.mp3">Green Day</li>
-                <li class="Song" data-src="path/to/gorillaz.mp3">Gorillaz</li>
-                <li class="Song" data-src="path/to/gaga_lady.mp3">Lady Gaga</li>
-                <li class="Song" data-src="path/to/gotye.mp3">Gotye</li>
-                <li class="Song" data-src="path/to/g-eazy.mp3">G-Eazy</li>
-            
-                <!-- H -->
-                <li class="Song" data-src="path/to/harry_styles.mp3">Harry Styles</li>
-                <li class="Song" data-src="path/to/hozier.mp3">Hozier</li>
-                <li class="Song" data-src="path/to/hall_oates.mp3">Hall & Oates</li>
-                <li class="Song" data-src="path/to/hot_chip.mp3">Hot Chip</li>
-                <li class="Song" data-src="path/to/halsey.mp3">Halsey</li>
-            
-                <!-- I -->
-                <li class="Song" data-src="path/to/imagine_dragons.mp3">Imagine Dragons</li>
-                <li class="Song" data-src="path/to/iggy_azalea.mp3">Iggy Azalea</li>
-                <li class="Song" data-src="path/to/indochine.mp3">Indochine</li>
-                <li class="Song" data-src="path/to/iron_maiden.mp3">Iron Maiden</li>
-                <li class="Song" data-src="path/to/italian_greyhound.mp3">Italian Greyhound</li>
-            
-                <!-- J -->
-                <li class="Song" data-src="path/to/jay_z.mp3">Jay-Z</li>
-                <li class="Song" data-src="path/to/jesse_reyez.mp3">Jesse Reyez</li>
-                <li class="Song" data-src="path/to/john_legend.mp3">John Legend</li>
-                <li class="Song" data-src="path/to/james_blunt.mp3">James Blunt</li>
-                <li class="Song" data-src="path/to/jackson_browne.mp3">Jackson Browne</li>
-            
-                <!-- K -->
-                <li class="Song" data-src="path/to/kanye_west.mp3">Kanye West</li>
-                <li class="Song" data-src="path/to/kalid.mp3">Khalid</li>
-                <li class="Song" data-src="path/to/katy_perry.mp3">Katy Perry</li>
-                <li class="Song" data-src="path/to/kendrick_lamar.mp3">Kendrick Lamar</li>
-                <li class="Song" data-src="path/to/kygo.mp3">Kygo</li>
-            
-                <!-- L -->
-                <li class="Song" data-src="path/to/lana_del_rey.mp3">Lana Del Rey</li>
-                <li class="Song" data-src="path/to/louis_capaldi.mp3">Lewis Capaldi</li>
-                <li class="Song" data-src="path/to/lizzo.mp3">Lizzo</li>
-                <li class="Song" data-src="path/to/lorde.mp3">Lorde</li>
-                <li class="Song" data-src="path/to/led_zeppelin.mp3">Led Zeppelin</li>
-            
-                <!-- M -->
-                <li class="Song" data-src="path/to/maroon_5.mp3">Maroon 5</li>
-                <li class="Song" data-src="path/to/miley_cyrus.mp3">Miley Cyrus</li>
-                <li class="Song" data-src="path/to/metallica.mp3">Metallica</li>
-                <li class="Song" data-src="path/to/muse.mp3">Muse</li>
-                <li class="Song" data-src="path/to/mark_ronson.mp3">Mark Ronson</li>
-            
-                <!-- N -->
-                <li class="Song" data-src="path/to/nelly.mp3">Nelly</li>
-                <li class="Song" data-src="path/to/niska.mp3">Niska</li>
-                <li class="Song" data-src="path/to/never_shout_never.mp3">Never Shout Never</li>
-                <li class="Song" data-src="path/to/nicki_minaj.mp3">Nicki Minaj</li>
-                <li class="Song" data-src="path/to/nirvana.mp3">Nirvana</li>
-            
-                <!-- O -->
-                <li class="Song" data-src="path/to/one_direction.mp3">One Direction</li>
-                <li class="Song" data-src="path/to/oasis.mp3">Oasis</li>
-                <li class="Song" data-src="path/to/olivia_rodrigo.mp3">Olivia Rodrigo</li>
-                <li class="Song" data-src="path/to/operation_mindcrime.mp3">Operation Mindcrime</li>
-                <li class="Song" data-src="path/to/orbital.mp3">Orbital</li>
-            
-                <!-- P -->
-                <li class="Song" data-src="path/to/phoenix.mp3">Phoenix</li>
-                <li class="Song" data-src="path/to/post_malone.mp3">Post Malone</li>
-                <li class="Song" data-src="path/to/pearl_jam.mp3">Pearl Jam</li>
-                <li class="Song" data-src="path/to/pink_floyd.mp3">Pink Floyd</li>
-                <li class="Song" data-src="path/to/paloma_faith.mp3">Paloma Faith</li>
-            
-                <!-- Q -->
-                <li class="Song" data-src="path/to/queen.mp3">Queen</li>
-                <li class="Song" data-src="path/to/q-tip.mp3">Q-Tip</li>
-                <li class="Song" data-src="path/to/questlove.mp3">Questlove</li>
-                <li class="Song" data-src="path/to/quick_silver.mp3">Quick Silver</li>
-                <li class="Song" data-src="path/to/quentin_tarantino.mp3">Quentin Tarantino</li>
-            
-                <!-- R -->
-                <li class="Song" data-src="path/to/rihanna.mp3">Rihanna</li>
-                <li class="Song" data-src="path/to/radiohead.mp3">Radiohead</li>
-                <li class="Song" data-src="path/to/rosalia.mp3">Rosalía</li>
-                <li class="Song" data-src="path/to/robbie_williams.mp3">Robbie Williams</li>
-                <li class="Song" data-src="path/to/rocky_asap.mp3">A$AP Rocky</li>
-            
-                <!-- S -->
-                <li class="Song" data-src="path/to/selena_gomez.mp3">Selena Gomez</li>
-                <li class="Song" data-src="path/to/sia.mp3">Sia</li>
-                <li class="Song" data-src="path/to/sam_smith.mp3">Sam Smith</li>
-                <li class="Song" data-src="path/to/sting.mp3">Sting</li>
-                <li class="Song" data-src="path/to/snoop_dogg.mp3">Snoop Dogg</li>
-            
-                <!-- T -->
-                <li class="Song" data-src="path/to/taylor_swift.mp3">Taylor Swift</li>
-                <li class="Song" data-src="path/to/the_weeknd.mp3">The Weeknd</li>
-                <li class="Song" data-src="path/to/tame_impala.mp3">Tame Impala</li>
-                <li class="Song" data-src="path/to/taio_cruz.mp3">Taio Cruz</li>
-                <li class="Song" data-src="path/to/tim_mcgraw.mp3">Tim McGraw</li>
-            
-                <!-- U -->
-                <li class="Song" data-src="path/to/u2.mp3">U2</li>
-                <li class="Song" data-src="path/to/usher.mp3">Usher</li>
-                <li class="Song" data-src="path/to/underoath.mp3">Underoath</li>
-                <li class="Song" data-src="path/to/unwritten_law.mp3">Unwritten Law</li>
-                <li class="Song" data-src="path/to/university_of_colorado.mp3">University of Colorado</li>
-            
-                <!-- V -->
-                <li class="Song" data-src="path/to/van_halen.mp3">Van Halen</li>
-                <li class="Song" data-src="path/to/vampire_weekend.mp3">Vampire Weekend</li>
-                <li class="Song" data-src="path/to/valerie.mp3">Valerie</li>
-                <li class="Song" data-src="path/to/versace.mp3">Versace</li>
-                <li class="Song" data-src="path/to/vince_staples.mp3">Vince Staples</li>
-            
-                <!-- W -->
-                <li class="Song" data-src="path/to/the_white_stripes.mp3">The White Stripes</li>
-                <li class="Song" data-src="path/to/whitney_houston.mp3">Whitney Houston</li>
-                <li class="Song" data-src="path/to/wiz_khalifa.mp3">Wiz Khalifa</li>
-                <li class="Song" data-src="path/to/will_smith.mp3">Will Smith</li>
-                <li class="Song" data-src="path/to/walk_the_moon.mp3">Walk The Moon</li>
-            
-                <!-- X -->
-                <li class="Song" data-src="path/to/x_ambassadors.mp3">X Ambassadors</li>
-                <li class="Song" data-src="path/to/xx.mp3">The xx</li>
-                <li class="Song" data-src="path/to/xzibit.mp3">Xzibit</li>
-                <li class="Song" data-src="path/to/xenon.mp3">Xenon</li>
-                <li class="Song" data-src="path/to/xerox.mp3">Xerox</li>
-            
-                <!-- Y -->
-                <li class="Song" data-src="path/to/ye_ye.mp3">Ye Ye</li>
-                <li class="Song" data-src="path/to/young_thug.mp3">Young Thug</li>
-                <li class="Song" data-src="path/to/yolanda_adams.mp3">Yolanda Adams</li>
-                <li class="Song" data-src="path/to/yo_gotti.mp3">Yo Gotti</li>
-                <li class="Song" data-src="path/to/yuna.mp3">Yuna</li>
-            
-                <!-- Z -->
-                <li class="Song" data-src="path/to/zoe.mp3">Zoe</li>
-                <li class="Song" data-src="path/to/zayn_malik.mp3">Zayn Malik</li>
-                <li class="Song" data-src="path/to/zedd.mp3">Zedd</li>
-                <li class="Song" data-src="path/to/zara_larsson.mp3">Zara Larsson</li>
-                <li class="Song" data-src="path/to/zap_mama.mp3">Zap Mama</li>
-            </ul>
-            
-        <!-- Checkbox Section -->
+                @list_of_songs
+                <!--li class="Song" data-src="@path_file">@file_name</li-->
+
+        </ul>
     
     </div>
 
@@ -343,58 +351,39 @@
         const searchInput = document.getElementById('SearchInput');
         const playBtn = document.getElementById('PlayBtn');
         const pauseBtn = document.getElementById('PauseBtn');
-        const stopBtn = document.getElementById('StopBtn');
+        //const stopBtn = document.getElementById('StopBtn');
         const muteBtn = document.getElementById('MuteBtn');
         const progressBar = document.getElementById('ProgressBar');
+        const progressBarNumber = document.getElementById('ProgressBarNumber');
         const volumeControl = document.getElementById('VolumeControl');
-        const songsList = document.querySelectorAll('#SongsList .Song');
         const audioPlayer = document.getElementById('audioPlayer');
         const playingSong = document.getElementById('PlayingSong');
-    
+        const playBack = document.getElementById('PlayBack');
+        const playFoward = document.getElementById('PlayFoward');
+        const repeatMode = document.getElementById('RepeatAll');
+        const aleatoryMode = document.getElementById('Aleatory');
+        const songsList = document.querySelectorAll('#SongsList .Song');
+        //const svg_icon0 = document.getElementById('svg_icon0');
+        //const svg_icon1 = document.getElementById('svg_icon1');
 
+        //display: none
 
-                // Function to handle song selection and playing
-        function attachSongClickEvents() {
-            const songsList = document.querySelectorAll('#SongsList .Song');
-            songsList.forEach(song => {
-                song.addEventListener('click', () => {
-                    const audioPlayer = document.getElementById('audioPlayer');
-                    audioPlayer.src = song.getAttribute('data-src');
-                    audioPlayer.play();
-                });
-            });
-        }
-        function shuffleList() {
-            const list = document.getElementById('SongsList');
-            const items = Array.from(list.children);
-
-            // Fisher-Yates Shuffle Algorithm
-            for (let i = items.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                list.appendChild(items[j]);
-            }
-
-            // Reattach event listeners to the shuffled items
-            attachSongClickEvents();
-        }
-
-
-        // Function to filter songs
-        function SearchSong() {
-            const searchValue = searchInput.value.toLowerCase();
-
-            songsList.forEach(function(item) {
-                const text = item.textContent.toLowerCase();
-                
-                if (text.includes(searchValue)) {
-                    item.style.display = '';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-                async function fileExists(url) {
+       // muteBtn.innerHTML = "&#128266;";
+        /*
+        repeatMode.classList.remove("switchable");
+        repeatMode.classList.add("default");
+        */
+        /**PlayBack#RepeatAll#Aleatory#PlayFoward**/
+        
+        var stop_playallfoward = false; 
+        var play_index = 0; 
+        var song_paused = true; 
+        var song_repeat = false;
+        var play_aleatory = false;
+        var id = null;
+              // Check if the file exist or not
+             /*
+              async function fileExists(url) {
             try {
                 const response = await fetch(url, {
                     method: 'HEAD' // Only fetch headers
@@ -412,62 +401,397 @@
                 return false;
             }
         }
-        // Function to handle play button
-        playBtn.addEventListener('click', () => {
-
-            fileExists(audioPlayer.getAttribute('data-src')).then(exists => {
-                if (exists) {
-                    console.log('File exists.');
+        */
+ /*
+        async function PlayAllFoward_SetClickEvent(song)
+        {
+           
+            return new Promise((resolve)=>
+            {
+                song.addEventListener('click', async () => {
+                    const audioPlayer = document.getElementById('audioPlayer');
+                    audioPlayer.src = song.getAttribute('data-src');
+                    //debugging area
+                    console.log("Goal: "+goal+" Current: "+current);
+                    //console.log(song);
+                    console.log(song.getAttribute('data-src'));
+                    //debugging area
                     audioPlayer.play();
-                    return;
-                } else {
-                    console.log('File does not exist.');
-                    console.log("Playing Song Failed!!!");
+                            // Resolve the promise when the song ends
+                    audioPlayer.onended = () => {
+                        resolve(); // Song has ended
+                    };
+                    current++;
+                    if(current>=goal-1 && repeatMode.value == "all")
+                    {
+                        console.log("Again...");
+                        PlayAllFoward();
+                        return;
+                    }
+                    if(stop_playallfoward)
+                    {
+                        console.log("Stop playing all foward requested");
+                        return;
+                    }
+                });
 
+            });
+            
+        }
+        */
+        const AudioPlay = ()=>
+        {
+            try{
+                audioPlayer.play();
+            }catch{
+                console.log("Failed to play the given song!!!");
+            }
+        };
+        const Play = (index) =>{
+         
+            
+            try{
+                console.log("Play request..: "+songsList[play_index].textContent);
+                console.log("Index..: "+index);
+                songsList[index].click();
+            }catch{
+                console.log("Failed to  play the index..: "+index);
+            }
+          
+        };
+       
+        const SwapSvg =()=>
+        {
+            if(song_paused){
+                song_paused = false;
+                playBtn.style.display = "none"; 
+                pauseBtn.style.display = "flex"; 
+                console.log("Is song paused..: "+song_paused);
+                return;
+            }else{
+                song_paused = true;
+                playBtn.style.display = "flex"; 
+                pauseBtn.style.display = "none"; 
+                console.log("Is song paused..: "+song_paused);
+
+            }
+        };
+        const RepeatOrContinue = ()=>{
+            console.log("RepeatOrContinue..: "+song_repeat==false?"continue...":"repeat...");
+            if(play_aleatory)
+            {
+                Play(ShuffleIndex());
+                return;
+            }
+            if(song_repeat == false)
+            {
+                play_index++;
+                if(play_index > songsList.length -1)
+                {
+                    play_index = 0; 
+                }
+                console.log("Moving foward play_index increased..: "+play_index);
+                PlayAllFoward();
+                return;
+            }else{
+               
+                console.log("Repeatting play_index...: "+play_index);
+                console.log("Song..: "+songsList[play_index].textContent); 
+                Play(play_index); 
+                return;
+            }
+
+        };
+        audioPlayer.onended = RepeatOrContinue;
+
+        async function PlayAllFoward_Click(song)
+        {       
+             
+            console.log("Clicking...: "+song.textContent);
+            song.click();
+            return new Promise((resolve)=>{
+                
+                audioPlayer.onended = () => 
+                {
+                        resolve(); // Song has ended
+                        audioPlayer.onended = RepeatOrContinue;
+                };
+            });
+            
+        }
+        
+        // Function to handle song selection and playing
+        async function PlayAllFoward()
+        {
+            console.log("Playing Foward started at play_index..: "+play_index);
+            let current; 
+            const goal = songsList.length;
+            console.log("List Items: "+songsList.length);
+            
+            for(let s = play_index; s < songsList.length; s++)//for (const song of songsList) 
+            {
+                 // Wait for the song to finish playing
+                
+                await PlayAllFoward_Click(songsList[s]);
+                current++;
+                if(song_repeat){
+                    RepeatOrContinue();
+                    return;
+                }
+                if(current == goal-1 && 
+                    song_repeat == false)
+                {
+                    play_index = 0; 
+                    PlayAllFoward();
+                    return;
+                }
+            }
+        
+        }
+        function ShuffleIndex() 
+        {
+            //let index = Math.round(Math.random(0,songsList.length-1)*100);
+            let index = Math.floor(Math.random() * songsList.length);
+
+            play_index = index; 
+            console.log("Random index given..: "+play_index);
+            return index;
+        }
+        
+        
+        function PlaySong()
+        {
+            var song = audioPlayer.getAttribute('data-src');
+            SwapSvg();
+            if (song != null) 
+            {
+                console.log('File exists: '+song);
+                //audioPlayer.play();
+                //AudioPlay();
+                PlayAllFoward();
+                    return;
+            }else{
+                console.log('File does not exist.');
+                console.log("Playing Song Failed!!!");
+                console.log("Playing the whole list instead...");
+                PlayAllFoward();
+
+            }
+      
+
+        }
+
+        // Function to filter songs
+        function SearchSong()
+        {
+            const searchValue = searchInput.value.toLowerCase();
+
+            songsList.forEach(function(item) {
+                const text = item.textContent.toLowerCase();
+                
+                if (text.includes(searchValue)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
                 }
             });
-
-            
-        });
-
-        // Function to handle pause button
-        pauseBtn.addEventListener('click', () => {
+        }
+      
+        // Function to handle play button
+        const PauseSong = ()=> 
+        {
             audioPlayer.pause();
-        });
-
-        // Function to handle stop button
-        stopBtn.addEventListener('click', () => {
+            SwapSvg();
+            //song_paused = true; 
+            //playing_in_progress 
+        }
+        const StopSong = ()=>{
             audioPlayer.pause();
             audioPlayer.currentTime = 0;
-        });
+        };
+        const MuteSong = ()=>{
+             
+            if(!audioPlayer.muted)
+            {
+                audioPlayer.muted = true; 
+                muteBtn.innerHTML = "&#128263;";
+                console.log("Is song muted..: "+audioPlayer.muted);
+                return;
+            }else{
+                audioPlayer.muted = false; 
+                console.log("Is song muted..: "+audioPlayer.muted);
+                muteBtn.innerHTML = "&#128266;";
 
-        // Function to handle mute button
-        muteBtn.addEventListener('click', () => {
-            audioPlayer.muted = !audioPlayer.muted;
-            muteBtn.textContent = audioPlayer.muted ? 'Unmute' : 'Mute';
-        });
 
-        // Function to handle volume control
-        volumeControl.addEventListener('input', (event) => {
+            }
+
+        };
+        const ChangeSongsVolume = (event)=>{
             audioPlayer.volume = event.target.value;
-        });
-
-        // Function to update progress bar
-        audioPlayer.addEventListener('timeupdate', () => {
+        };
+        const ChangeSongsProgressBar = ()=>{
             const progress = (audioPlayer.currentTime / audioPlayer.duration) * 100;
+            let minutes,seconds,m,s;
             progressBar.style.width = progress + '%';
-        });
-
-        // Function to handle song selection
-        songsList.forEach(song => {
+            minutes =  Math.round(audioPlayer.currentTime  / 60);
+            seconds = Math.round(audioPlayer.currentTime - minutes * 60).toString();
+            m = Math.round(audioPlayer.duration/60);
+            s = Math.round((audioPlayer.duration - m) * 60).toString();
+            current_time = audioPlayer.currentTime;
+            if(s.length > 2)
+            {
+                s = s.substring(0,2);
+            }
+            progressBarNumber.textContent = minutes+":"+seconds+"/"+m+":"+s;
+            if(audioPlayer.duration != NaN)
+            {
+                id = (Math.random(0,100)*100).toString();
+            }
+        };
+        const MakeSongClickable = (song)=>{
             song.addEventListener('click', () => {
+                //stop_playallfoward = true;
+              
+                //console.log(id);
+                if(544 < 3)
+                {   
+                        console.log("__________________________________");
+                        console.log("Song Index..: "+GetSongIndex(song));
+                        console.log("Play Index..: "+play_index);
+                        console.log("Resumming At...: "+audioPlayer.currentTime);
+                        console.log("__________________________________");
+                        AudioPlay();
+                        return;    
+                }
                 audioPlayer.src = song.getAttribute('data-src');
                 playingSong.textContent = "Song..: "+song.textContent;
-                audioPlayer.play();
+                AudioPlay();
+                //audioPlayer.play();
+                //stop_playallfoward = false;
+                play_index = GetSongIndex(song);
+                console.log("Playing index set to..: "+play_index);
+                playing_in_progress = true;
+                return;
             });
-        });
-        
+        };
+        const GetSongIndex = (song)=>{
+            for(var item = 0; item < songsList.length;item++)
+            {
+                if(songsList[item].textContent == song.textContent)
+                {
+                    return item; 
+                }
+            }
+            return 0;
+        };
+        const PlayBackwards = () => {
+            play_index--;
+            console.log("Play index..: "+play_index);
+            if(play_aleatory)
+            {
+                Play(ShuffleIndex());
+                return;
+            }
+            if(play_index == -1)
+            {
+                play_index = songsList.length-1;
+                Play(play_index); 
+                return;
+            }else{
+                Play(play_index); 
+                return;
+            }
 
+        };
+        const PlayFoward = () => {
+            play_index++;
+            console.log("Play index..: "+play_index);
+            if(play_aleatory)
+            {
+                Play(ShuffleIndex());
+                return;
+            }
+            if(play_index >= songsList.length-1)
+            {
+                play_index = 0;
+                Play(play_index); 
+                return;
+            }else{
+                Play(play_index); 
+                return;
+            }
+
+        };
+
+
+        const RepeatModeChange = ()=>{
+            if(!song_repeat)
+            {
+                song_repeat = true; 
+                repeatMode.classList.remove("default");
+                repeatMode.classList.add("action_type");
+                console.log("Repeat song activated..: "+song_repeat);
+                repeatMode.innerHTML = "&#x21BA;";
+                return;
+            }else{
+                song_repeat = false; 
+                repeatMode.classList.remove("action_type");
+                repeatMode.classList.add("default");
+                //repeatMode.classList.add("switchable");
+                console.log("Repeat song activated..: "+song_repeat);
+                repeatMode.innerHTML = "&#10230;";
+                return;
+            }
+        };
+
+        const PlayAleatoryModeChange = ()=>{
+            if(play_aleatory)
+            {
+                play_aleatory = false; 
+                aleatoryMode.classList.remove("action_type");
+                aleatoryMode.classList.add("default");
+                console.log("Aleatory song activated..: "+play_aleatory);
+                //aleatoryMode.innerHTML = "&#x21BA;";
+                return;
+            }else{
+                play_aleatory = true; 
+                aleatoryMode.classList.remove("default");
+                aleatoryMode.classList.add("action_type");
+                //aleatoryMode.classList.add("switchable");
+                console.log("Aleatory song activated..: "+play_aleatory);
+                //repeatMode.innerHTML = "&#10230;";
+                return;
+            }
+        };
+        /*
+            Here are all the Events Listeners 
+        */
+        // Fucntion to handle play previus song
+        playBack.addEventListener('click',()=>PlayBackwards());
+        // Fucntion to handle play next song
+        playFoward.addEventListener('click',()=>PlayFoward());
+        // Fucntion to handle repeat song
+        repeatMode.addEventListener('click',()=>RepeatModeChange());
+        // Fucntion to handle aleatory play song
+        aleatoryMode.addEventListener('click',()=>PlayAleatoryModeChange());
+        // Function to handle play PlaySong
+        playBtn.addEventListener('click',()=>PlaySong());
+        // Secondary play button
+        //svg_icon0.addEventListener('click',()=>PlaySong());
+        // Secondary play button
+        //svg_icon1.addEventListener('click',()=>PlaySong());
+        // Function to handle pause button
+        pauseBtn.addEventListener('click',()=>PauseSong());
+        // Function to handle stop button
+        //stopBtn.addEventListener('click',()=>StopSong());
+        // Function to handle mute button
+        muteBtn.addEventListener('click',()=>MuteSong());
+        // Function to handle volume control
+        volumeControl.addEventListener('input',(event)=>ChangeSongsVolume(event));
+        // Function to update progress bar
+        audioPlayer.addEventListener('timeupdate',()=>ChangeSongsProgressBar());
+        // Function to handle song selection
+        songsList.forEach(song => {MakeSongClickable(song);});
         // Attach search function to input event
         searchInput.addEventListener('input', SearchSong);
     
